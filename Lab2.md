@@ -1,1 +1,2 @@
-# Hé lô các bạn
+# Hé lô các bạn, tui chưa có làm bài
+
