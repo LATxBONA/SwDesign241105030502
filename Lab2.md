@@ -1,377 +1,386 @@
-# 1. Ca sử dụng: Create Administrative Report
+# Payroll System Analysis Classes
 
-## Lớp phân tích:
+## 1. Create Administrative Report
 
-### Boundary (View):
+### Xác định các lớp phân tích:
+
+#### Boundary (View):
 - **AdministrativeReportForm**: Giao diện người dùng để nhập thông tin báo cáo.
-- **AdministrativeReportDisplay**: Hiển thị báo cáo cho người dùng.
-
-### Control (Controller):
-- **AdministrativeReportController**: Điều khiển luồng xử lý tạo báo cáo.
-- **AdministrativeReportGenerator**: Tạo báo cáo dựa trên thông tin đầu vào.
-
-### Entity (Model):
-- **Report**: Thông tin báo cáo.
-- **Employee**: Thông tin nhân viên.
-
-
-## Biểu đồ Sequence:
-
-![Sequence Create Administrative Report](https://www.planttext.com/api/plantuml/png/d5DBJiGm3Dtd55x2WWlC0WtYjqVY09d4C96Ik79SKC_6WYDn1JnDIsUaQK0iuxpt_FoSV7ryRejObZv5OvqGmtD1DZlgixSym8rF8OSYR2MyuHDsnF90dDg8kr2wQ0VZA0jJF8kvhNTHkxLWZvXHpyG6imGPe9Rdqttg8Ws8nXny0y3LzQfds82lnfRQnQLPXQlKABg1LvJ9D0T13bPfV-fN-bqA0cwYDNkrGnfTZ55CLolEZnWhcZ-9ggHZ_4rmWQlU7BTINr3S7d0kU2ldnplXrzBHBC1rdVyRPNfdXw3tzDuSOuOkIprv2yhQOlRw3Ru1003__mC0)
-## Nhiệm vụ của từng lớp:
-### Boundary:
-- **AdministrativeReportForm**: Nhận input từ người dùng và hiển thị kết quả báo cáo.
 - **AdministrativeReportDisplay**: Hiển thị báo cáo đã tạo.
 
-### Control:
-- **AdministrativeReportController**: Điều phối quá trình tạo báo cáo.
-- **AdministrativeReportGenerator**: Thực hiện logic tạo báo cáo.
+#### Control (Controller):
+- **AdministrativeReportController**: Điều khiển luồng xử lý tạo báo cáo.
+- **AdministrativeReportGenerator**: Tạo nội dung báo cáo.
 
-### Entity:
+#### Entity (Model):
 - **Report**: Lưu trữ thông tin báo cáo.
+- **Employee**: Thông tin nhân viên liên quan đến báo cáo.
+
+### Biểu đồ sequence:
+![Sequence Create Administrative Report](https://www.planttext.com/api/plantuml/png/Z58nRiCm3Dpr2exjq0zeA58qQVO0VO1Y4oq1MJGeke7VbY5FwXTgMNAI8JAwaSVZyIZgztpPH7MYG-UDQvG5FYEAEV8GMYSZlBKT1OegJka73zYpw0TBjyxOKkoz6qt3GONzGyvxhlbfsXfjZm6ddCLWKD8HChnakwxtF28Qatm3mCjhrRC52lsW83C2ZP2Ya3CrVathvjp25se1YzhJyqEzMqzDzRfe4ft3KgWeNlb9C4DssWdl-tAG2CixpOwNP8lgoCV_35YvieNupQTLhuMPXDAPBBG5oASm6mpjz0F_0000__y30000)
+
+### Nhiệm vụ của từng lớp phân tích:
+- **AdministrativeReportForm**: Nhận input từ người dùng để tạo báo cáo.
+- **AdministrativeReportDisplay**: Hiển thị báo cáo đã tạo cho người dùng.
+- **AdministrativeReportController**: Điều phối quá trình tạo báo cáo.
+- **AdministrativeReportGenerator**: Tạo nội dung báo cáo dựa trên dữ liệu.
+- **Report**: Lưu trữ thông tin về báo cáo.
 - **Employee**: Cung cấp thông tin nhân viên cho báo cáo.
 
-## Thuộc tính và phương thức chính:
-### AdministrativeReportForm:
-- **Phương thức**: `displayReportForm()`, `getReportCriteria()`, `showReport()`.
+### Một số thuộc tính và phương thức của các lớp phân tích:
+- **AdministrativeReportForm**:
+  - Phương thức: `getReportCriteria()`, `displayReportForm()`
   
-### AdministrativeReportDisplay:
-- **Phương thức**: `displayReport()`, `printReport()`.
+- **AdministrativeReportDisplay**:
+  - Phương thức: `showReport()`
   
-### AdministrativeReportController:
-- **Phương thức**: `generateReport()`, `validateReportCriteria()`.
+- **AdministrativeReportController**:
+  - Phương thức: `createReport()`, `validateReportCriteria()`
   
-### AdministrativeReportGenerator:
-- **Phương thức**: `createReport()`.
+- **AdministrativeReportGenerator**:
+  - Phương thức: `generateReport()`
   
-### Report:
-- **Thuộc tính**: `reportId`, `reportData`, `generatedDate`.
-- **Phương thức**: `generateReport()`, `updateReport()`.
+- **Report**:
+  - Thuộc tính: `reportId`, `reportData`
+  - Phương thức: `createReport()`
   
-### Employee:
-- Như đã phân tích ở trên.
+- **Employee**:
+  - Thuộc tính: `employeeId`, `name`
+  - Phương thức: `getEmployeeDetails()`
 
-## Mối quan hệ:
-- **AdministrativeReportController** sử dụng **AdministrativeReportForm** và **AdministrativeReportDisplay**.
-- **AdministrativeReportGenerator** phụ thuộc vào **Employee** và **Report**.
+### Quan hệ giữa các lớp:
+- **AdministrativeReportController** sử dụng **AdministrativeReportForm** và **AdministrativeReportDisplay** để nhận input và hiển thị báo cáo.
+- **AdministrativeReportGenerator** phụ thuộc vào **Report** để tạo nội dung báo cáo.
+- **Report** sử dụng thông tin từ **Employee** để tạo báo cáo.
+
+### Biểu đồ lớp
+![Class Create Administrative Report ](https://www.planttext.com/api/plantuml/png/d59B2i8m4Dtd55tgebUGYbLnwmq6CsWWdp8PAoAUp8L7yWgsJTCArXRCxhsPzvXvazVZcNa6uhFHug31-sGfZRBACm6h4lTOEEAD8vFSH5A_8t8WLwGOIS5i7WfI-KB3jLTKXRiOSSs381hxaxk4mfHmvIoJqnefQW-4mDYf6wu4hMJ7Vamxwhr5YnLsrE_R4FWzMc3QlfGQj9EVA0U6mG4xZxKfjBiYHXTiSVInOB3BFJRdoA2q3puJ0QNfukT9_zMsXnkKz_dLwi29DgcQYJk83AsiVjqR003__mC0)
+
+> **Giải thích**
+- **Actors:** User
+- **Boundary Classes:**
+  - AdministrativeReportForm: Giao diện để người dùng nhập tiêu chí báo cáo. Nó thu thập dữ liệu từ người dùng và gửi đến controller.
+  - AdministrativeReportDisplay: Hiển thị báo cáo sau khi được tạo.
+- **Control Classes:**
+  - AdministrativeReportController: Điều phối quá trình tạo báo cáo. Nó nhận dữ liệu từ form và gọi generator để tạo báo cáo.
+  - AdministrativeReportGenerator: Thực hiện logic tạo báo cáo dựa trên tiêu chí đã nhập.
+- **Entity Classes:**
+  - Report: Đại diện cho báo cáo được tạo.
+  - Employee: Cung cấp thông tin nhân viên cần thiết cho báo cáo.
 
 ---
 
-# 2. Ca sử dụng: Create Employee Report
+## 2. Create Employee Report
 
-## Lớp phân tích:
+### Xác định các lớp phân tích:
 
-### Boundary (View):
+#### Boundary (View):
 - **EmployeeReportForm**: Giao diện người dùng để nhập thông tin báo cáo nhân viên.
-- **EmployeeReportDisplay**: Hiển thị báo cáo nhân viên.
-
-### Control (Controller):
-- **EmployeeReportController**: Điều khiển luồng xử lý tạo báo cáo nhân viên.
-- **EmployeeReportGenerator**: Tạo báo cáo nhân viên.
-
-### Entity (Model):
-- **Employee**: Thông tin nhân viên.
-- **Report**: Thông tin báo cáo.
-## Biểu đồ Sequence:
-
-![Sequence Create Employee Report](https://www.planttext.com/api/plantuml/png/Z98x3i8m38RtdC8Z35oW0qBYjIDnW3Gr42bDAjSLwjaOE19N83IKlbN6sFv-_xRpUZmtEKlY8ZL2AdO4vnn9nAwmYQGIzcbcN8bumimH7nobKxcTpZCZIw6SPNAcbzs6gF7QumL7j4ZI6n1eMNEZNhz3cH0VVm2mMezuWmYIO6EOMop52E1bAi48hiWzowGPIKiFplJCYpZL3EeBJFIPMaZLkneUkoK3norceFVRdvTJXFDY3T3Iyl05MTq0wq0YkJzGXmoXrWmDIk5Y_y_m_KAVZTxSVSP_NTnSSFJqdjkWJVp_VWC00F__0m00)
-## Nhiệm vụ của từng lớp:
-### Boundary:
-- **EmployeeReportForm**: Nhận input từ người dùng và hiển thị kết quả báo cáo nhân viên.
 - **EmployeeReportDisplay**: Hiển thị báo cáo nhân viên đã tạo.
 
-### Control:
+#### Control (Controller):
+- **EmployeeReportController**: Điều khiển luồng xử lý tạo báo cáo nhân viên.
+- **EmployeeReportGenerator**: Tạo nội dung báo cáo nhân viên.
+
+#### Entity (Model):
+- **EmployeeReport**: Lưu trữ thông tin báo cáo nhân viên.
+- **Employee**: Thông tin nhân viên.
+
+### Biểu đồ sequence:
+![Sequence Create Employee Report](https://www.planttext.com/api/plantuml/png/b98n3i8m34Ltdy8Z35mW0qAYm8x40K9hGQGqgHnNg6TZu4XSWHQY0Wa8iKN-_i_VSgxdooA8Pcbh2xeKpxWBnB3thQiqTxYg6-ixeYqrdcNjkVwc5IOqLdTGUYViRQ8k7rNRipytRCWHwpu0a1CZAJsj0Wmv4N4s_v1HeN5DAqXHGRvBMB8HOgCXj-IWPsI51v94ZAJ95BwvSkAuum2yF-cz8QEDZXoc-cteD-7L-BP7GQAD3V-CZ2TM68x-z6Dkx1qWmwKKLh6Gt0GMvAh-zzq0003__mC0)
+
+### Nhiệm vụ của từng lớp phân tích:
+- **EmployeeReportForm**: Nhận input từ người dùng để tạo báo cáo nhân viên.
+- **EmployeeReportDisplay**: Hiển thị báo cáo nhân viên đã tạo cho người dùng.
 - **EmployeeReportController**: Điều phối quá trình tạo báo cáo nhân viên.
-- **EmployeeReportGenerator**: Thực hiện logic tạo báo cáo nhân viên.
-
-### Entity:
+- **EmployeeReportGenerator**: Tạo nội dung báo cáo nhân viên dựa trên dữ liệu.
+- **EmployeeReport**: Lưu trữ thông tin về báo cáo nhân viên.
 - **Employee**: Cung cấp thông tin nhân viên cho báo cáo.
-- **Report**: Lưu trữ thông tin báo cáo nhân viên.
 
-## Thuộc tính và phương thức chính:
-### EmployeeReportForm:
-- **Phương thức**: `displayEmployeeReportForm()`, `getEmployeeReportCriteria()`, `showEmployeeReport()`.
+### Một số thuộc tính và phương thức của các lớp phân tích:
+- **EmployeeReportForm**:
+  - Phương thức: `getEmployeeReportCriteria()`, `displayEmployeeReportForm()`
   
-### EmployeeReportDisplay:
-- **Phương thức**: `displayEmployeeReport()`, `printEmployeeReport()`.
+- **EmployeeReportDisplay**:
+  - Phương thức: `showEmployeeReport()`
   
-### EmployeeReportController:
-- **Phương thức**: `generateEmployeeReport()`, `validateEmployeeReportCriteria()`.
+- **EmployeeReportController**:
+  - Phương thức: `createEmployeeReport()`, `validateEmployeeReportCriteria()`
   
-### EmployeeReportGenerator:
-- **Phương thức**: `createEmployeeReport()`.
+- **EmployeeReportGenerator**:
+  - Phương thức: `generateEmployeeReport()`
   
-### Employee:
-- Như đã phân tích ở trên.
+- **EmployeeReport**:
+  - Thuộc tính: `reportId`, `employeeData`
+  - Phương thức: `createEmployeeReport()`
+  
+- **Employee**:
+  - Thuộc tính: `employeeId`, `name`
+  - Phương thức: `getEmployeeDetails()`
 
-### Report:
-- Như đã phân tích ở trên.
+### Quan hệ giữa các lớp:
+- **EmployeeReportController** sử dụng **EmployeeReportForm** và **EmployeeReportDisplay** để nhận input và hiển thị báo cáo.
+- **EmployeeReportGenerator** phụ thuộc vào **EmployeeReport** để tạo nội dung báo cáo.
+- **EmployeeReport** sử dụng thông tin từ **Employee** để tạo báo cáo.
 
-## Mối quan hệ:
-- **EmployeeReportController** sử dụng **EmployeeReportForm** và **EmployeeReportDisplay**.
-- **EmployeeReportGenerator** phụ thuộc vào **Employee** và **Report**.
+### Biểu đồ lớp
+![Class Create Employee Report](https://www.planttext.com/api/plantuml/png/b99D2i8m44RtEKMNkkWLH6XLt7g3eHaqa9yo6PKYdio5H_8ArgO1sxI2sOLvtnicazVZkVOCn6UZHQN1-snZQkqQn0FMZdZho6GtaNtE4NbOB4WnaeB5CW1I-Lf3anfQu2uc_MM8n1R-vAv3O3vQEClaj4QAwOeG69DyLxk0LZAfVaqmqwLtvzJTzZBSi6TAOFZPEx56NpH4emM3oJENoA2q3vxPwVDyDR6rV_X-2wF83YqIi9jAZD018TPePVkXtW000F__0m00)
+
+> **Giải thích**
+- **Actors:** User
+- **Boundary Classes:**
+  - EmployeeReportForm: Giao diện để người dùng nhập tiêu chí báo cáo nhân viên.
+  - EmployeeReportDisplay: Hiển thị báo cáo nhân viên.
+- **Control Classes:**
+  - EmployeeReportController: Điều phối quá trình tạo báo cáo nhân viên. Nó nhận tiêu chí từ form và gọi generator để tạo báo cáo.
+  - EmployeeReportGenerator: Thực hiện logic tạo báo cáo nhân viên.
+- **Entity Classes:**
+  - EmployeeReport: Đại diện cho báo cáo nhân viên.
+  - Employee: Cung cấp thông tin nhân viên cần thiết cho báo cáo.
+
 
 ---
 
-# 3. Ca sử dụng: Maintain Employee Information
+## 3. Login
 
-## Lớp phân tích:
+### Xác định các lớp phân tích:
 
-### Boundary (View):
-- **EmployeeInfoForm**: Giao diện người dùng để nhập và chỉnh sửa thông tin nhân viên.
-- **EmployeeInfoDisplay**: Hiển thị thông tin nhân viên.
+#### Boundary (View):
+- **LoginForm**: Giao diện người dùng để nhập thông ```markdown
+tin đăng nhập.
+- **LoginMessage**: Hiển thị thông báo xác thực đăng nhập.
 
-### Control (Controller):
-- **EmployeeInfoController**: Điều khiển luồng xử lý duy trì thông tin nhân viên.
-- **EmployeeInfoValidator**: Kiểm tra tính hợp lệ của thông tin nhân viên.
+#### Control (Controller):
+- **LoginController**: Điều khiển luồng xử lý đăng nhập.
 
-### Entity (Model):
+#### Entity (Model):
+- **User **: Thông tin người dùng.
+
+### Biểu đồ sequence:
+![Sequence Login](https://www.planttext.com/api/plantuml/png/R9112eCm44NtESKi5TeBk2Y2q5KBtNY0gHbi82QI6IkUhOiUgLUeGQiYtGJ-d_yVa_cytZaB1kaQgx0I7w1a2khkEwSn373njN5d7vgTTILch4bLtadmTZABITWHG4wC31DCnHS0ZgSLbu5nRIVGZIE73G4w3IqozpvejSIMpehEe2OfvrgI7gAypSKaLRjq1CHm1a-qHgDG4KZ7xT3o__ZsVndmm_TRvzUPvShNXbkB0zWuXMQ-JqvEZxVz0W00__y30000)
+
+### Nhiệm vụ của từng lớp phân tích:
+- **LoginForm**: Nhận input từ người dùng để thực hiện đăng nhập.
+- **LoginMessage**: Hiển thị thông báo xác thực cho người dùng.
+- **LoginController**: Điều phối quá trình đăng nhập và xác thực thông tin.
+- **User **: Lưu trữ thông tin người dùng và trạng thái đăng nhập.
+
+### Một số thuộc tính và phương thức của các lớp phân tích:
+- **LoginForm**:
+  - Phương thức: `getUsername()`, `getPassword()`, `displayLoginForm()`
+  
+- **LoginMessage**:
+  - Phương thức: `showLoginMessage()`
+  
+- **LoginController**:
+  - Phương thức: `processLogin()`, `validateCredentials()`
+  
+- **User **:
+  - Thuộc tính: `userId`, `username`, `password`
+  - Phương thức: `getUser Details()`
+
+### Quan hệ giữa các lớp:
+- **LoginController** sử dụng **LoginForm** để nhận input và **LoginMessage** để hiển thị thông báo.
+- **LoginController** phụ thuộc vào **User ** để xác thực thông tin đăng nhập.
+
+### Biểu đồ lớp
+![Class Login](https://www.planttext.com/api/plantuml/png/T51B2i8m4Dtd55dgebUGGaKG5DnuWA4PQY1Doang4V5aBZoILp3Hfgs_h2PltdipR-xNMyuUoBUr4QK1PhbnbROhHxKy2nbVXNxFI1PgdCq7Q1UudIEL8AMvCN0Qr06_YAdb5fcXmkJA1zTDyIz-uQmdPmnIaZJaoa1-TjFO8nYjm6D1gD1w3OQdJd7nNfwreLwhiOw1Nh-cp_AMLoxHWqvsdojbsMAyrFzk7-ud8GuHELeLRly0003__mC0)
+
+> **Giải thích**
+- **Actors:** User
+- **Boundary Classes:**
+  - LoginForm: Giao diện để người dùng nhập tên người dùng và mật khẩu.
+  - LoginMessage: Hiển thị thông báo xác thực đăng nhập (thành công hoặc thất bại).
+- **Control Classes:**
+  - LoginController: Xử lý logic xác thực thông tin đăng nhập. Nó kiểm tra tên người dùng và mật khẩu.
+- **Entity Classes:**
+  - User : Đại diện cho người dùng trong hệ thống.
+
+
+---
+
+## 4. Maintain Employee Information
+
+### Xác định các lớp phân tích:
+
+#### Boundary (View):
+- **EmployeeForm**: Giao diện người dùng để nhập thông tin nhân viên.
+- **EmployeeReport**: Hiển thị thông tin nhân viên.
+
+#### Control (Controller):
+- **EmployeeController**: Điều khiển luồng xử lý thông tin nhân viên.
+
+#### Entity (Model):
 - **Employee**: Thông tin nhân viên.
-## Biểu đồ Sequence:
 
-![Sequence Maintain Employee Information](https://www.planttext.com/api/plantuml/png/X99DZi8m38NtEOMNmu8Bi1WXyIEnHipUj0OYqgHAd44z6mkEn1KmBRyXm2xDU_wUxVIuFmm3e-TO6OK5Em-BG5ujNRGb-WOcLMrSGpIpApTrliehOnrgWuqgd6Nlp9CswkwCK7Fo7nfTeWGhigpvpbNgt0a0z7zVke01b5raglpqr8jP02rg06lYHrNC7pD2N5QQWIuAQ95KVhQKS1jBCF_TcPBelFs18wN5XehjzNkCZArHrfJKvniHGAo_9ByVuVAevprit6xHWkQC74E2k1hlUyuyZjGCoPRodvq0003__mC0)
-## Nhiệm vụ của từng lớp:
-### Boundary:
-- **EmployeeInfoForm**: Nhận input từ người dùng và hiển thị thông tin nhân viên.
-- **EmployeeInfoDisplay**: Hiển thị thông tin nhân viên đã được cập nhật.
 
-### Control:
-- **EmployeeInfoController**: Điều phối quá trình duy trì thông tin nhân viên.
-- **EmployeeInfoValidator**: Thực hiện kiểm tra tính hợp lệ của thông tin nhân viên.
+### Biểu đồ sequence:
+![Sequence Maintain Employee Information](https://www.planttext.com/api/plantuml/png/X91B3i8m34JtFeMNiE02MQ1AV0w0n05COq6aDAuILwXdOy6Hk0AjGjiW5YndD6-iyUlnh99IrAxnGBLAn7FY21VfWgNOuw5flVJCHudDhtlYLg92BK6Z-DdUPUs78WxgT040ndf4t6o_gWswq7QA_F7GaXAKYP9O-WrUMITxFp2hDVocIjOWMJk9l-ayq62woNq-mqhEfuBDgP4RrncqBhMU-c9DHg3YO8TFlm400F__0m00)
 
-### Entity:
-- **Employee**: Lưu trữ và cung cấp thông tin nhân viên.
+### Nhiệm vụ của từng lớp phân tích:
+- **EmployeeForm**: Nhận input từ người dùng để thêm, sửa hoặc xóa thông tin nhân viên.
+- **EmployeeReport**: Hiển thị thông tin nhân viên cho người dùng.
+- **EmployeeController**: Điều phối quá trình thêm, sửa hoặc xóa thông tin nhân viên.
+- **Employee**: Lưu trữ thông tin nhân viên.
 
-## Thuộc tính và phương thức chính:
-### EmployeeInfoForm:
-- **Phương thức**: `displayEmployeeInfoForm()`, `getEmployeeInfo()`, `showConfirmation()`.
+### Một số thuộc tính và phương thức của các lớp phân tích:
+- **EmployeeForm**:
+  - Phương thức: `getEmployeeData()`, `displayEmployeeForm()`
   
-### EmployeeInfoDisplay:
-- **Phương thức**: `displayEmployeeInfo()`, `showUpdateStatus()`.
+- **EmployeeReport**:
+  - Phương thức: `showEmployeeDetails()`
   
-### EmployeeInfoController:
-- **Phương thức**: `updateEmployeeInfo()`, `validateEmployeeInfo()`.
+- **EmployeeController**:
+  - Phương thức: `addEmployee()`, `updateEmployee()`, `deleteEmployee()`
   
-### EmployeeInfoValidator:
-- **Phương thức**: `checkEmployeeDataValidity()`.
-  
-### Employee:
-- Như đã phân tích ở trên.
+- **Employee**:
+  - Thuộc tính: `employeeId`, `name`, `employeeType`
+  - Phương thức: `getEmployeeDetails()`
 
-## Mối quan hệ:
-- **EmployeeInfoController** sử dụng **EmployeeInfoForm** và **EmployeeInfoDisplay**.
-- **EmployeeInfoValidator** phụ thuộc vào **Employee**.
+### Quan hệ giữa các lớp:
+- **EmployeeController** sử dụng **EmployeeForm** để nhận input và **EmployeeReport** để hiển thị thông tin.
+- **EmployeeController** phụ thuộc vào **Employee** để thực hiện các thao tác thêm, sửa hoặc xóa thông tin.
+
+### Biểu đồ lớp
+![Class Maintain Employee Information](https://www.planttext.com/api/plantuml/png/X55B2i8m4Dtd55dg8bUGWXzmArvWS0OjJ9gGJ94Ydio5H_8ALj98Vz3PpNlp7eytdzUxY091QilgmX2ZtblFhY4wk63rG-dVN4aol0E1rJh1M4RFqFGLBVLK8wSJUHSaUyMRk__DIA3aE2VQkag2OwQGXO2OoHoWzWX2OnI9QO1Ep3jBGzr-nBHNO6d8d1jFqmxwiMS26xCPrBXqamfQkb85LTZ-wGi00F__0m00)
+
+> **Giải thích**
+- **Actors:** User
+- **Boundary Classes:**
+  - EmployeeForm: Giao diện để người dùng nhập và chỉnh sửa thông tin nhân viên.
+  - EmployeeReport: Hiển thị thông tin chi tiết về nhân viên sau khi thêm hoặc chỉnh sửa.
+- **Control Classes:**
+  - EmployeeController: Điều phối quá trình thêm, sửa hoặc xóa thông tin nhân viên. Nó xử lý logic nghiệp vụ liên quan đến nhân viên.
+- **Entity Classes:**
+  - Employee: Đại diện cho thông tin nhân viên, bao gồm các thuộc tính như mã số, tên, và loại nhân viên.
+
 
 ---
 
-# 4. Ca sử dụng: Run Payroll
+## 5. Maintain Purchase Order
 
-## Lớp phân tích:
+### Xác định các lớp phân tích:
 
-### Boundary (View):
-- **PayrollRunForm**: Giao diện người dùng để khởi động quy trình chạy bảng lương.
-- **PayrollRunReport**: Hiển thị báo cáo kết quả chạy bảng lương.
+#### Boundary (View):
+- **PurchaseOrderForm**: Giao diện người dùng để nhập thông tin đơn hàng.
+- **PurchaseOrderReport**: Hiển thị thông tin đơn hàng.
 
-### Control (Controller):
-- **PayrollRunController**: Điều khiển luồng xử lý chạy bảng lương.
-- **PayrollCalculator**: Tính toán các khoản thanh toán cho nhân viên.
+#### Control (Controller):
+- **PurchaseOrderController**: Điều khiển luồng xử lý thông tin đơn hàng.
 
-### Entity (Model):
-- **Payroll**: Thông tin bảng lương.
-- **Employee**: Thông tin nhân viên.
+#### Entity (Model):
+- **PurchaseOrder**: Thông tin đơn hàng.
 
-## Biểu đồ Sequence:
 
-![Sequence Run Payroll](https://www.planttext.com/api/plantuml/png/X59BJiCm4Dtx5BE41HVe0bMgO8qgSO2fCr1B4piQZmKv6mkEr2jq84cTH14i_NxpFFRbwtkV5KLBomwz9e7NJE9EgSG6fOSNx2Kn7qjyJj9kuKVgagZpAQeXC-8m86nnA_A0x0kZJNCKDUWjRZe-jHsddiYvdpO0yF2uQW8xQ4Bk6FibVdVlLaAp_eRiu9rqraw2aWGqmnypSZcrGS6FuetihVkQaJx95wNABehDf3MYRiNyVZnC2TK-avbtsfHPtaZz6MW26bJyR-Jj-RRMEJ2BtgEuhZIVqmTq0mz2kR1cjwVOs7-w0W00__y30000)
+### Biểu đồ sequence:
+![Sequence Maintain Purchase Order](https://www.planttext.com/api/plantuml/png/b94n2W8n44Nxd69ABRn02bbGR1N10uoRu0PY4YOJPCzcuP6yWXiYI3PiOJl___V3p_lvwY8ZSRfRWJrxWalK9Au-EOKqmYbHFs3KHrAQ3fxk2z9P1qyiUk-OlAsrNJdQYQiT6vv5XSYL0B3PjdKIZ0k98Nm5y5a1XOoYCJU4NxE4c-PAsq-8rLei-1kK15IgklmHBkj8Y8D_r8_GZCR6EQhuCoPF8q6P62oEpGebBJhjrFI17m000F__0m00)
 
-## Nhiệm vụ của từng lớp:
-### Boundary:
-- **PayrollRunForm**: Nhận input từ người dùng để khởi động quy trình chạy bảng lương.
-- **PayrollRunReport**: Hiển thị kết quả của quy trình chạy bảng lương.
+### Nhiệm vụ của từng lớp phân tích:
+- **PurchaseOrderForm**: Nhận input từ người dùng để thêm, sửa hoặc xóa thông tin đơn hàng.
+- **PurchaseOrderReport**: Hiển thị thông tin đơn hàng cho người dùng.
+- **PurchaseOrderController**: Điều phối quá trình thêm, sửa hoặc xóa thông tin đơn hàng.
+- **PurchaseOrder**: Lưu trữ thông tin đơn hàng.
 
-### Control:
-- **PayrollRunController**: Điều phối quá trình chạy bảng lương.
-- **PayrollCalculator**: Thực hiện tính toán cho các khoản thanh toán.
-
-### Entity:
-- **Payroll**: Lưu trữ thông tin bảng lương.
-- **Employee**: Cung cấp thông tin nhân viên cho bảng lương.
-
-## Thuộc tính và phương thức chính:
-### PayrollRunForm:
-- **Phương thức**: `displayPayrollRunForm()`, `getPayrollRunCriteria()`, `showPayrollRunStatus()`.
+### Một số thuộc tính và phương thức của các lớp phân tích:
+- **PurchaseOrderForm**:
+  - Phương thức: `getPurchaseOrderData()`, `displayPurchaseOrderForm()`
   
-### PayrollRunReport:
-- **Phương thức**: `displayPayrollRunReport()`, `printPayrollRunReport()`.
+- **PurchaseOrderReport**:
+  - Phương thức: `showPurchaseOrderDetails()`
   
-### PayrollRunController:
-- **Phương thức**: `executePayrollRun()`, `validatePayrollRunCriteria()`.
+- **PurchaseOrderController**:
+  - Phương thức: `addPurchaseOrder()`, `updatePurchaseOrder()`, `deletePurchaseOrder()`
   
-### PayrollCalculator:
-- **Phương thức**: `calculatePayroll()`.
-  
-### Payroll:
-- **Thuộc tính**: `payrollId`, `totalAmount`, `runDate`.
-- **Phương thức**: `generatePayroll()`, `updatePayrollStatus()`.
-  
-### Employee:
-- Như đã phân tích ở trên.
+- **PurchaseOrder**:
+  - Thuộc tính: `orderId`, `customerName`, `productDetails`, `orderDate`
+  - Phương thức: `getOrderDetails()`
 
-## Mối quan hệ:
-- **PayrollRunController** sử dụng **PayrollRunForm** và **PayrollRunReport**.
-- **PayrollCalculator** phụ thuộc vào **Employee** và **Payroll**.
+### Quan hệ giữa các lớp:
+- **PurchaseOrderController** sử dụng **PurchaseOrderForm** để nhận input và **PurchaseOrderReport** để hiển thị thông tin.
+- **PurchaseOrderController** phụ thuộc vào **PurchaseOrder** để thực hiện các thao tác thêm, sửa hoặc xóa thông tin đơn hàng.
+
+### Biểu đồ lớp
+![Class Maintain Purchase Order](https://www.planttext.com/api/plantuml/png/Z59B2i8m4Dtd55tgebUGWYAuKV46GsQmXRG9amaYuibSU2IlO4jQiQI5PZTvdvbvoUVrBhm0IwYDqWQypyw1TGcUJep4Uyjrzb1PTwua8sm70gjrnB3opi0zqRRuKqqPNyXPbi7Qb_OszYQ1olXP-TOsmjOOui4244UCORBW48Gc8IH3AJJTi6-JswuuO2nqy69huYFK56ySMmnQ-l7_96rOz8inNN5kkJpVf0-od1rJNivN1JNOVeKl0000__y30000)
+
+
+> **Giải thích**
+- **Actors:** User
+- **Boundary Classes:**
+  - PurchaseOrderForm: Giao diện để người dùng nhập dữ liệu đơn hàng mua.
+  - PurchaseOrderReport: Hiển thị thông tin chi tiết về đơn hàng mua sau khi được thêm hoặc chỉnh sửa.
+- **Control Classes:**
+  - PurchaseOrderController: Điều phối quá trình thêm, sửa hoặc xóa đơn hàng mua. Nó xử lý logic nghiệp vụ liên quan đến đơn hàng.
+- **Entity Classes:**
+  - PurchaseOrder: Đại diện cho thông tin đơn hàng mua, bao gồm các thuộc tính như mã số đơn hàng, thông tin khách hàng, và sản phẩm đã mua.
+
+
 
 ---
 
-# 5. Ca sử dụng: Select Payment Method
+## 6. Run Payroll
 
-## Lớp phân tích:
+### Xác định các lớp phân tích:
 
-### Boundary (View):
-- **PaymentMethodForm**: Giao diện người dùng để chọn phương thức thanh toán.
-- **PaymentMethodDisplay**: Hiển thị phương thức thanh toán đã chọn.
+#### Boundary (View):
+- **PayrollReport**: Giao diện hiển thị báo cáo lương.
+- **PayrollMessage**: Hiển thị thông báo kết quả chạy lương.
 
-### Control (Controller):
-- **PaymentMethodController**: Điều khiển luồng xử lý chọn phương thức thanh toán.
+#### Control (Controller):
+- **PayrollController**: Điều khiển luồng xử lý chạy lương.
 
-### Entity (Model):
-- **PaymentMethod**: Thông tin về phương thức thanh toán.
+#### Entity (Model):
+- **Payroll**: Thông tin về lương của nhân viên.
+- **Employee**: Thông tin nhân viên liên quan đến lương.
 
-## Biểu đồ Sequence:
 
-![Sequence Select Payment Method](https://www.planttext.com/api/plantuml/png/b99D2i8m48NtESKiTU45kf22uauGn0EapMW3-Id91EdPN7Wahs3w0wK_4TpEc_SzyYQVrpltn1q5hHWloJguUNIiiC48xXguy4QZeJDIPSN9EfsGZjBNYZUij8QSLLFnq0zL1CUPf9cNiJOJ07RxPHva87hsGjfisN8zCZfQ1W-aAoei2SLaBTf-v_bGQ4dWExEqPZqbySBMtnddcQdzEIe2GYquuL0i4fVA_m4OJZ4MbsfXrJNsvolxX7ZFktIQTptaQ4JyA5y0003__mC0)
-## Nhiệm vụ của từng lớp:
-### Boundary:
-- **PaymentMethodForm**: Nhận input từ người dùng để chọn phương thức thanh toán.
-- **PaymentMethodDisplay**: Hiển thị phương thức thanh toán đã chọn.
+### Biểu đồ sequence:
+![Sequence Run Payroll](https://www.planttext.com/api/plantuml/png/Z9512i8m44NtESKiTU45if22k1H4y00n7RGmJK8oGN8s5nx9AzYGj5KAulB_oSkV_BmUpoQmyXnx4agpzN0EwCN5HjCgd-2eahT49tJMyy8-O0ZgYa9RmuCUxLsHD5o4XZkUpezotpko2L68d0O0c-sIbU2ZgUvgBHRp3qY2LgGZASR_WF8U2U5cxr_Mp1MTcRoZXBOBZbG2LyRWIoM_Kcez4_jjpr7LcBFoMbDGNqjkqBJ3Dxq1003__mC0)
 
-### Control:
-- **PaymentMethodController**: Điều phối quá trình chọn phương thức thanh toán.
+### Nhiệm vụ của từng lớp phân tích:
+- **PayrollReport**: Hiển thị báo cáo lương cho người dùng.
+- **PayrollMessage**: Hiển thị thông báo kết quả chạy lương.
+- **PayrollController**: Điều phối quá trình chạy lương và tạo báo cáo.
+- **Payroll**: Lưu trữ thông tin về lương của nhân viên.
+- **Employee**: Cung cấp thông tin nhân viên cho quá trình chạy lương.
 
-### Entity:
-- **PaymentMethod**: Lưu trữ thông tin về phương thức thanh toán.
-
-## Thuộc tính và phương thức chính:
-### PaymentMethodForm:
-- **Phương thức**: `displayPaymentMethodForm()`, `getSelectedPaymentMethod()`, `showConfirmation()`.
+### Một số thuộc tính và phương thức của các lớp phân tích:
+- **PayrollReport**:
+  - Phương thức: `showPayrollReport()`, `printPayrollReport()`
   
-### PaymentMethodDisplay:
-- **Phương thức**: `displaySelectedPaymentMethod()`.
- ### PaymentMethodController:
-- **Phương thức**: `selectPaymentMethod()`, `validatePaymentMethod()`.
+- **PayrollMessage**:
+  - Phương thức: `displayPayrollMessage()`
   
-### PaymentMethod:
-- **Thuộc tính**: `methodId`, `methodName`, `details`.
-- **Phương thức**: `updateMethodDetails()`.
-
-## Mối quan hệ:
-- **PaymentMethodController** sử dụng **PaymentMethodForm** và **PaymentMethodDisplay**.
-- **PaymentMethod** được sử dụng để lưu trữ và cập nhật thông tin phương thức thanh toán.
-
----
-
-# 6. Ca sử dụng: Submit Grades
-
-## Lớp phân tích:
-
-### Boundary (View):
-- **SubmitGradesForm**: Giao diện người dùng để nhập điểm cho sinh viên.
-- **SubmitGradesReport**: Hiển thị báo cáo điểm đã nhập.
-
-### Control (Controller):
-- **SubmitGradesController**: Điều khiển luồng xử lý nhập điểm.
-- **GradesValidator**: Kiểm tra tính hợp lệ của điểm nhập vào.
-
-### Entity (Model):
-- **Grade**: Thông tin điểm của sinh viên.
-- **Student**: Thông tin sinh viên.
-
-## Biểu đồ Sequence:
-
-![Sequence Submit Grades](https://www.planttext.com/api/plantuml/png/X58xRiCm3Drr2exja0juA08KQ92rHhihbf88bIM3eXhuR1bwf5wXZ1L_8Xlk9hqVAOg_rvzj88aKQojaHHxX8sWK1n-TajX26G-reHrAfSERntgPUTUDHnALTuJUFb2l2RCSsjE9-9JMACaLXNPag4rmVoafAZuASMi703OlirQW06L2OsMRCq_FOYRcW2wgW9E-utlNH6BjQedGGN3giCNOvTSEraHaBKrqd90DXAtVwQm7SoxfNQojphhwcl0yll-hiIysGuLL_VoZnybFqIpaBXtd7ix-0hm3HuEr9EETs6gdUF7-0000__y30000)
-
-## Nhiệm vụ của từng lớp:
-### Boundary:
-- **SubmitGradesForm**: Nhận input từ người dùng để nhập điểm cho sinh viên.
-- **SubmitGradesReport**: Hiển thị báo cáo điểm đã nhập.
-
-### Control:
-- **SubmitGradesController**: Điều phối quá trình nhập điểm.
-- **GradesValidator**: Thực hiện kiểm tra tính hợp lệ của điểm.
-
-### Entity:
-- **Grade**: Lưu trữ thông tin điểm của sinh viên.
-- **Student**: Cung cấp thông tin sinh viên cho việc nhập điểm.
-
-## Thuộc tính và phương thức chính:
-### SubmitGradesForm:
-- **Phương thức**: `displaySubmitGradesForm()`, `getGradesInput()`, `showConfirmation()`.
+- **PayrollController**:
+  - Phương thức: `runPayroll()`, `generatePayrollReport()`
   
-### SubmitGradesReport:
-- **Phương thức**: `displayGradesReport()`, `printGradesReport()`.
+- **Payroll**:
+  - Thuộc tính: `payrollId`, `employeeId`, `totalPay`, `payDate`
+  - Phương thức: `calculatePayroll()`
   
-### SubmitGradesController:
-- **Phương thức**: `submitGrades()`, `validateGrades()`.
-  
-### GradesValidator:
-- **Phương thức**: `checkGradesValidity()`.
-  
-### Grade:
-- **Thuộc tính**: `gradeId`, `studentId`, `value`, `subject`.
-- **Phương thức**: `updateGrade()`.
-  
-### Student:
-- Như đã phân tích ở trên.
+- **Employee**:
+  - Thuộc tính: `employeeId`, `name`, `salary`
+  - Phương thức: `getEmployeeDetails()`
 
-## Mối quan hệ:
-- **SubmitGradesController** sử dụng **SubmitGradesForm** và **SubmitGradesReport**.
-- **GradesValidator** phụ thuộc vào **Grade** và **Student**.
+### Quan hệ giữa các lớp:
+- **PayrollController** sử dụng **PayrollReport** và **PayrollMessage** để hiển thị kết quả và thông báo.
+- **PayrollController** phụ thuộc vào **Payroll** để tính toán lương và tạo báo cáo.
+- **Payroll** sử dụng thông tin từ **Employee** để tính toán lương cho từng nhân viên.
 
----
+### Biểu đồ lớp
+![Class Run Payroll](https://www.planttext.com/api/plantuml/png/X9913e8m44Ntd8AbBhY28H4NBaoCDvZ014c6jkaCCSHuCXSUoIi8bb51WsoQwP___hJbVhsbBE2bgIdA2PZZFRJU4XtGMI_nEOhxZu_sD18Moo0uNncPAfTepDeXCvIeiA9YHz2EnH-sjJNIh-ZLwHipQ9fVea4FWlz660Y92-Ms22NMZcoBgBLO0Ueih-QiOuUa72Xlw1tr6R8PC9eonHge0oLX8F2jpYvgp52W8WxCx-CdoMhyBlCzmvNEDwdwtDCveXHDqVqB3m000F__0m00)
 
-# 7. Ca sử dụng: View Report Card
+> **Giải thích**
+- **Actors:** User
+- **Boundary Classes:**
+  - PayrollReport: Giao diện để hiển thị báo cáo lương sau khi tính toán.
+  - PayrollMessage: Hiển thị thông báo xác nhận về việc thực hiện tính lương.
+- **Control Classes:**
+  - PayrollController: Điều phối quá trình tính lương. Nó gọi các phương thức để tính toán lương và tạo báo cáo.
+- **Entity Classes:**
+  - Payroll: Đại diện cho thông tin lương được tính toán.
+  - Employee: Cung cấp thông tin về nhân viên để tính lương.
 
-## Lớp phân tích:
 
-### Boundary (View):
-- **ReportCardDisplay**: Giao diện người dùng để hiển thị bảng điểm.
 
-### Control (Controller):
-- **ReportCardController**: Điều khiển luồng xử lý xem bảng điểm.
 
-### Entity (Model):
-- **ReportCard**: Thông tin bảng điểm của sinh viên.
-- **Student**: Thông tin sinh viên.
-
-## Biểu đồ Sequence:
-
-![Sequence View Report Card](https://www.planttext.com/api/plantuml/png/Z97D3S8m38NlcS97EB001rIfdG34024nj598AiS5TJOEZCGAk3_GebB4pNhszrxiF6xt9B8chivEQSE1O1-Hr25KtcggOOjb84ursQo8fTErCi4p1JVgf9tYX4FF1O-fbxBZoagfL6CF0AlDr1hMOBjgQ2sMQZht0G_fmX-HJJv3ZmR5e7-GC1Vj2giPU-K7C-Y2dT0Z2VPNshTTOnwkVMQ6h0iNvvPjR_O-3b0x0wOvRuBUojyz0G00__y30000)
-
-## Nhiệm vụ của từng lớp:
-### Boundary:
-- **ReportCardDisplay**: Hiển thị bảng điểm cho sinh viên.
-
-### Control:
-- **ReportCardController**: Điều phối quá trình xem bảng điểm.
-
-### Entity:
-- **ReportCard**: Lưu trữ thông tin bảng điểm của sinh viên.
-- **Student**: Cung cấp thông tin sinh viên cho bảng điểm.
-
-## Thuộc tính và phương thức chính:
-### ReportCardDisplay:
-- **Phương thức**: `displayReportCard()`, `showStudentDetails()`.
-  
-### ReportCardController:
-- **Phương thức**: `fetchReportCard()`, `validateStudent()`.
-  
-### ReportCard:
-- **Thuộc tính**: `reportCardId`, `studentId`, `grades`, `semester`.
-- **Phương thức**: `generateReportCard()`.
-  
-### Student:
-- Như đã phân tích ở trên.
-
-## Mối quan hệ:
-- **ReportCardController** sử dụng **ReportCardDisplay**.
-- **ReportCard** phụ thuộc vào **Student**.
+--- 
